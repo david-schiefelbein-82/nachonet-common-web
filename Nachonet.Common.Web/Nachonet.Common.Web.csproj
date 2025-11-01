@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.14.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nachonet.Common.Web.ActiveDirectory\Nachonet.Common.Web.ActiveDirectory.csproj" />
+    <ProjectReference Include="..\Nachonet.Common.Web.AppLocal\Nachonet.Common.Web.AppLocal.csproj" />
+    <ProjectReference Include="..\Nachonet.Common.Web.Oidc\Nachonet.Common.Web.Oidc.csproj" />
+  </ItemGroup>
+
+
+
+</Project>
