@@ -77,7 +77,7 @@
         /// <summary>
         /// Gets the configured URL to redirect to authenticate with
         /// </summary>
-        public string GetAuthenticationUrl(string state)
+        public string GetAuthenticationUrl(string host, string state)
         {
             var nonce = new Random().Next(1, 10000);
             var queryString = new Dictionary<string, string?>()
@@ -85,7 +85,7 @@
                 { "client_id", _config.ClientId },
                 { "response_type", _config.ResponseType },
                 { "scope", _config.Scope },
-                { "redirect_uri", _config.RedirectUri },
+                { "redirect_uri", _config.RedirectUri.Replace("${host}", host) },
                 { "nonce", nonce.ToString() },
                 { "state", state },
             };
@@ -113,7 +113,7 @@
         /// <summary>
         /// Lookup the jwt token from the code returned in authentication callback
         /// </summary>
-        public async Task<OidcCodeToken> GetTokenAsync(string code, CancellationToken cancellationToken = default)
+        public async Task<OidcCodeToken> GetTokenAsync(string host, string code, CancellationToken cancellationToken = default)
         {
             try
             {
@@ -123,7 +123,7 @@
                 { "client_id", _config.ClientId},
                 { "client_secret", _config.ClientSecret },
                 { "code" , code },
-                { "redirect_uri", _config.RedirectUri }
+                { "redirect_uri", _config.RedirectUri.Replace("${host}", host) }
             };
 
 
